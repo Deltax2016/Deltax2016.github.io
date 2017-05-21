@@ -150,7 +150,7 @@ nav.navbar.fixed-to-top{
 /*-----------------------------------------------------------------------------------*/
 
 header{
-	padding: 150px 0px 0px 0px;
+	padding: 10px 0px 0px 0px;
 	height: 960px;
 	background: url('../img/nepal.jpg');
 	background-color: white!important;
@@ -343,7 +343,7 @@ header .carousel-indicators li {
 
 .features{
 	overflow: hidden;
-	padding: 150px 0px 150px 0px;
+	padding: 40px 0px 150px 0px;
 	min-height: 400px;
 	color: black;
 }
