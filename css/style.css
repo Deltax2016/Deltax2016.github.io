@@ -235,8 +235,8 @@ header .carousel-indicators li {
 
 .payoff{
 	overflow: hidden;
-	padding: 130px 0px 100px 0px;
-	min-height: 600px;
+	padding: 30px 0px 100px 0px;
+	min-height: 700px;
 	background: url('../img/dunes.jpg');
 	background-position: center top;
 	background-repeat: repeat-x;
