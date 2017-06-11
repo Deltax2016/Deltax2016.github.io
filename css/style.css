@@ -383,8 +383,8 @@ header .carousel-indicators li {
 
 .social{
 	overflow: hidden;
-	padding: 80px 0px 150px 0px;
-	min-height: 350px;
+	padding: 40px 0px 150px 0px;
+	min-height: 500px;
 	background: url('../img/sea.jpg');
 	background-position: center top;
 	background-repeat: repeat-x;
