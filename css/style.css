@@ -384,16 +384,14 @@ header .carousel-indicators li {
 .social{
 	overflow: hidden;
 	padding: 40px 0px 150px 0px;
-	min-height: 500px;
+	min-height: 1000px;
 	background: url('../img/sea.jpg');
 	background-position: center top;
 	background-repeat: repeat-x;
+	vertical-align: middle;
 	color: white;
 }
 
-.social img{
-	height: 20%;
-}
 
 .social h2{
 	color: white;
