@@ -391,6 +391,10 @@ header .carousel-indicators li {
 	color: white;
 }
 
+.social img{
+	height: 20%;
+}
+
 .social h2{
 	color: white;
 }
