@@ -27,6 +27,7 @@
 	var color;
 	var c;
 	game.newLoopFromConstructor('SAPR',function() {
+	var ctx = js.system.getContext(); 
 		var electro = game.newImageObject({
 			x: 240,
 			y: 0,
@@ -93,7 +94,12 @@
 			if (mouse.isDown("LEFT"))
 			{
 			bool = 0; 
-			//c = ctx.getImageData(mouse.x, mouse.y, 1, 1).data;
+			var imgData = ctx.getImageData(mouse.x, mouse.y, 1, 1);
+				red = imgData.data[0];
+				green = imgData.data[1];
+				blue = imgData.data[2];
+				alpha = imgData.data[3];
+				console.log(red + " " + green + " " + blue + " " + alpha); 
 			} else bool = 1;
 			if (key.isDown('RIGHT') && (electro.x>-electro.w+920))
 			{
