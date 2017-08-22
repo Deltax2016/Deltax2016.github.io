@@ -17,6 +17,8 @@
 				var y1 = 0;
 				var x2 =0;
 				var y2 = 0;
+				var x3 =0;
+				var y3 = 0;
 				var img = new Image();
 				img.src = 'original.png'; 
 				img.onload = function() { 
@@ -32,20 +34,20 @@
             function check(e) {
 			var code = e.keyCode;
 			switch (code) {
-			case 37: x1+=8; break; //Left key
-			case 38: y1+=8; break; //Up key
-			case 39: x1-=8; break; //Right key
-			case 40: y1-=8; break; //Down key
+			case 37: if (x1 != 0) {x1+=8; x3+=8;}break; //Left key
+			case 38: if (y1 != 0) {y1+=8; y3+=8} break; //Up key
+			case 39: if (x1 >-2600+640) {x1-=8; x3-=8;} break; //Right key
+			case 40: if (y1 >-4000+480) {y1-=8; y3-=8;}break; //Down key
 			default: alert(code); //Everything else
 			}
 			ctx.drawImage(img,x1,y1);
-			ctx.drawImage(point,x2,y2,32,32);
+			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			}
 			function doMouseDown(e) {
-				x2 = e.pageX -12;
+				x2 = e.pageX -16;
 				y2 = e.pageY - 30;
 				ctx.drawImage(img,x1,y1);
-				ctx.drawImage(point,x2,y2,32,32);
+				ctx.drawImage(point,x2+x3,y2+x3,32,32);
 				var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
 				red = imgData.data[0];
 				green = imgData.data[1];
