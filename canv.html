@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>rectExample</title>
+        <title>energy</title>
         <meta charset='utf-8' />
     </head>
     <body>
@@ -42,16 +42,13 @@
 			ctx.drawImage(point,x2,y2,32,32);
 			}
 			function doMouseDown(e) {
-				x2 = e.pageX -16;
-				y2 = e.pageY - 32;
+				x2 = e.pageX -12;
+				y2 = e.pageY - 30;
 				ctx.drawImage(img,x1,y1);
 				ctx.drawImage(point,x2,y2,32,32);
-				var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
-				red = imgData.data[0];
-				green = imgData.data[1];
-				blue = imgData.data[2];
-				alpha = imgData.data[3];
-				console.log(red + " " + green + " " + blue + " " + alpha); 
+				var p = canvas.getImageData(e.pageX, e.pageY, 1, 1).data;
+				var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+				alert("HEX: " + hex);
 			}
         </script>
     </body>
