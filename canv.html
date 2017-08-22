@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <title>rectExample</title>
+        <meta charset='utf-8' />
+    </head>
+    <body>
+        <canvas id='example'>Обновите браузер</canvas>
+        <script>
+            var example = document.getElementById("example"),
+			    ctx     = example.getContext('2d');
+				window.addEventListener('keydown',this.check,false);
+				window.addEventListener("mousedown", doMouseDown, false);
+				example.width = 640;
+				example.height = 480;
+				var x1 =0;
+				var y1 = 0;
+				var x2 =0;
+				var y2 = 0;
+				var img = new Image();
+				img.src = 'original.png'; 
+				img.onload = function() { 
+				ctx.drawImage(img,x1,y1);
+				}
+				img.crossOrigin = "Anonymous";
+				var point = new Image();
+				point.src = 'point.png'; 
+				point.onload = function() { 
+				//ctx.drawImage(point,x2,y2);
+				}
+				point.crossOrigin = "Anonymous";
+            function check(e) {
+			var code = e.keyCode;
+			switch (code) {
+			case 37: x1+=8; break; //Left key
+			case 38: y1+=8; break; //Up key
+			case 39: x1-=8; break; //Right key
+			case 40: y1-=8; break; //Down key
+			default: alert(code); //Everything else
+			}
+			ctx.drawImage(img,x1,y1);
+			ctx.drawImage(point,x2,y2,32,32);
+			}
+			function doMouseDown(e) {
+				x2 = e.pageX -16;
+				y2 = e.pageY - 32;
+				ctx.drawImage(img,x1,y1);
+				ctx.drawImage(point,x2,y2,32,32);
+				var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
+				red = imgData.data[0];
+				green = imgData.data[1];
+				blue = imgData.data[2];
+				alpha = imgData.data[3];
+				console.log(red + " " + green + " " + blue + " " + alpha); 
+			}
+        </script>
+    </body>
+</html>
