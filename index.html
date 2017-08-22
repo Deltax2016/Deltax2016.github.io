@@ -91,15 +91,6 @@
 		editor.value = 'ok';
 		this.update = function () {
 			game.clear();
-			if (mouse.isDown("LEFT"))
-			{
-			bool = 0; 
-			var imgData = ctx.getImageData(mouse.x-45, mouse.y-45, 1, 1);
-				red = imgData.data[0];
-				green = imgData.data[1];
-				blue = imgData.data[2];
-				console.log(red + " " + green + "    888  " + blue); 
-			} else bool = 1;
 			if (key.isDown('RIGHT') && (electro.x>-electro.w+920))
 			{
       		electro.x += -4;
@@ -147,6 +138,15 @@
 			}
 			text.text = "x: " + x1  + " y: " + y1 + " Text: "+ c;
 			electro.draw();
+			if (mouse.isDown("LEFT"))
+			{
+			bool = 0; 
+			var imgData = ctx.getImageData(mouse.x, mouse.y, 1, 1);
+				red = imgData.data[0];
+				green = imgData.data[1];
+				blue = imgData.data[2];
+				console.log(red + " " + green + " " + blue); 
+			} else bool = 1;
 			point.draw();
 			text.draw();
 			hud.draw();
