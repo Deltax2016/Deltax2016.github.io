@@ -94,11 +94,11 @@
 			if (mouse.isDown("LEFT"))
 			{
 			bool = 0; 
-			var imgData = ctx.getImageData(128, 512, 1, 1);
+			var imgData = ctx.getImageData(mouse.x-45, mouse.y-45, 1, 1);
 				red = imgData.data[0];
 				green = imgData.data[1];
 				blue = imgData.data[2];
-				console.log(red + " " + green + " " + blue); 
+				console.log(red + " " + green + "       " + blue); 
 			} else bool = 1;
 			if (key.isDown('RIGHT') && (electro.x>-electro.w+920))
 			{
