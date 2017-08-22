@@ -46,9 +46,12 @@
 				y2 = e.pageY - 30;
 				ctx.drawImage(img,x1,y1);
 				ctx.drawImage(point,x2,y2,32,32);
-				var p = canvas.getImageData(e.pageX, e.pageY, 1, 1).data;
-				var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
-				alert("HEX: " + hex);
+				var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
+				red = imgData.data[0];
+				green = imgData.data[1];
+				blue = imgData.data[2];
+				alpha = imgData.data[3];
+				console.log(red + " " + green + " " + blue + " " + alpha); 
 			}
         </script>
     </body>
