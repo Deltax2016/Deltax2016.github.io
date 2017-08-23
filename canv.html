@@ -45,8 +45,8 @@ var hei = 4000;
 			case 39: if (x1 >-2600+640) {x1-=8; x3-=8;} break; //Right key
 			case 40: if (y1 >-4000+480) {y1-=8; y3-=8;}break; //Down key
 
-case 81: if (wid != 0 && hei != 0) {wid /=2; hei/=4;} break; 
-case 69: if (wid != 2600 && hei != 4000) {wid *=2; hei*=4;} break; 
+case 81: if (wid != 0 && hei != 0) {wid -=8; hei-=16;} break; 
+case 69: if (wid != 2600 && hei != 4000) {wid +=8; hei+=16;} break; 
 
 			default: alert(code); //Everything else
 			}
