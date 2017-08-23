@@ -19,6 +19,8 @@
 				var y2 = 0;
 				var x3 =0;
 				var y3 = 0;
+var wid = 2600;
+var hei = 4000;
 				var globX = 0;
 				var globY = 0;
 				var img = new Image();
@@ -47,7 +49,7 @@
 			//ctx.clearRect(0, 0, canvas.width, canvas.height);
 			globX=x2+x3;
 			globY=y2+y3;
-			ctx.drawImage(img,x1,y1);
+			ctx.drawImage(img,x1,y1,wid, hei);
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			ctx.fillRect(640, 0, 200, 480);
 			}
@@ -55,7 +57,7 @@
 				x2 = e.pageX -16;
 				y2 = e.pageY - 30;
 				//ctx.clearRect(0, 0, canvas.width, canvas.height);
-				ctx.drawImage(img,x1,y1);
+				ctx.drawImage(img,x1,y1, wid, hei);
 				ctx.drawImage(point,x2,y2,32,32);
 				ctx.fillRect(640, 0, 200, 480);
 				x3= 0;
@@ -69,6 +71,13 @@
 				alpha = imgData.data[3];
 				console.log(red + " " + green + " " + blue + " " + alpha); 
 			}
+                
+
+                {
+                    
+
+                     
+                }
         </script>
     </body>
 </html>
