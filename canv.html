@@ -11,7 +11,7 @@
 			    ctx     = example.getContext('2d');
 				window.addEventListener('keydown',this.check,false);
 				window.addEventListener("mousedown", doMouseDown, false);
-				example.width = 640;
+				example.width = 840;
 				example.height = 480;
 				var x1 =0;
 				var y1 = 0;
@@ -26,6 +26,8 @@
 				img.onload = function() { 
 				ctx.drawImage(img,x1,y1);
 				}
+				ctx.fillStyle = "green";
+				ctx.fillRect(640, 0, 200, 480);
 				img.crossOrigin = "Anonymous";
 				var point = new Image();
 				point.src = 'point.png'; 
@@ -47,6 +49,7 @@
 			globY=y2+y3;
 			ctx.drawImage(img,x1,y1);
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
+			ctx.fillRect(640, 0, 200, 480);
 			}
 			function doMouseDown(e) {
 				x2 = e.pageX -16;
@@ -54,6 +57,7 @@
 				//ctx.clearRect(0, 0, canvas.width, canvas.height);
 				ctx.drawImage(img,x1,y1);
 				ctx.drawImage(point,x2,y2,32,32);
+				ctx.fillRect(640, 0, 200, 480);
 				x3= 0;
 				y3=0;
 				globX=x2+x3;
