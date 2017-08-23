@@ -28,8 +28,6 @@ var hei = 4000;
 				img.onload = function() { 
 				ctx.drawImage(img,x1,y1);
 				}
-				ctx.fillStyle = "green";
-				ctx.fillRect(640, 0, 200, 480);
 				img.crossOrigin = "Anonymous";
 				var point = new Image();
 				point.src = 'point.png'; 
@@ -37,6 +35,8 @@ var hei = 4000;
 				//ctx.drawImage(point,x2,y2);
 				}
 				point.crossOrigin = "Anonymous";
+		ctx.fillStyle = "green";
+				ctx.fillRect(640, 0, 200, 480);
             function check(e) {
 			var code = e.keyCode;
 			switch (code) {
