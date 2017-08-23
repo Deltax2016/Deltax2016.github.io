@@ -42,8 +42,8 @@ var hei = 4000;
 			switch (code) {
 			case 37: if (x1 != 0) {x1+=8; x3+=8;}break; //Left key
 			case 38: if (y1 != 0) {y1+=8; y3+=8} break; //Up key
-			case 39: if (x1 >-2600+840) {x1-=8; x3-=8;} break; //Right key
-			case 40: if (y1 >-4000+480) {y1-=8; y3-=8;}break; //Down key
+			case 39: if (x1 >-wid+640) {x1-=8; x3-=8;} break; //Right key
+			case 40: if (y1 >-hei+480) {y1-=8; y3-=8;}break; //Down key
 
 case 81: if (wid >= 0 && hei >= 0) {wid -=8; hei-=12,31;} break; 
 case 69: if (wid <= 2600 && hei <= 4000) {wid +=8; hei+=12,31;} break; 
