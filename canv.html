@@ -5,13 +5,8 @@
         <meta charset='utf-8' />
     </head>
     <body>
-        <canvas id="myCanvas" width="150" height="480"
-            style="background-color:#eee; border:1px solid #ccc;">Ваш браузер не поддерживает Canvas</canvas>
+        <canvas id="myCanvas">Ваш браузер не поддерживает Canvas</canvas>
         <script>
-		var canvas = document.getElementById("myCanvas"), 
-                context = canvas.getContext("2d");
-            context.font = "22px Verdana";
-            context.fillText("Hello HTML5!", 20, 50);
             var example = document.getElementById("example"),
 			    ctx     = example.getContext('2d');
 				window.addEventListener('keydown',this.check,false);
