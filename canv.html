@@ -19,6 +19,8 @@
 				var y2 = 0;
 				var x3 =0;
 				var y3 = 0;
+				var globX = 0;
+				var globY = 0;
 				var img = new Image();
 				img.src = 'original.png'; 
 				img.onload = function() { 
@@ -41,6 +43,8 @@
 			default: alert(code); //Everything else
 			}
 			//ctx.clearRect(0, 0, canvas.width, canvas.height);
+			globX=x2+x3;
+			globY=y2+y3;
 			ctx.drawImage(img,x1,y1);
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			}
@@ -50,6 +54,10 @@
 				//ctx.clearRect(0, 0, canvas.width, canvas.height);
 				ctx.drawImage(img,x1,y1);
 				ctx.drawImage(point,x2,y2,32,32);
+				x3= 0;
+				y3=0;
+				globX=x2+x3;
+				globY=y2+y3;
 				var imgData = ctx.getImageData(e.pageX, e.pageY+50, 1, 1);
 				red = imgData.data[0];
 				green = imgData.data[1];
