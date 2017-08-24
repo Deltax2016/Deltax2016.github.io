@@ -16,6 +16,7 @@
 				ctx.fillStyle = "green";
 				ctx.font = "15px Arial";
 				var i =0;
+				var num;
 				var char = [];
 				var x1 =0;
 				var y1 = 0;
@@ -60,7 +61,7 @@
 			case 56: if (i<6) {char[i] = 8; i+=1; } break;
 			case 57: if (i<6) {char[i] = 9; i+=1; } break;
 			case 8: if (i>0) {i--;} break;
-			
+			case 13: for (var j=0; j<i; j++) num += char[i-1-j]*Math.pow(10,j); console.log(num);
 			default: alert(code); //Everything else
 			}
 			//ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,7 +71,7 @@
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			ctx.fillRect(640, 0, 200, 480);
 		    	ctx.fillStyle = "white";
-		    	for (var j=0; j<i; j++) ctx.fillText(char[j],640+15*(j),100);
+		    	for (var j=0; j<i; j++) ctx.fillText(char[j],640+10*(j),100);
 		    	ctx.fillStyle = "green";
 			}
 			function doMouseDown(e) {
