@@ -100,10 +100,10 @@
 						var error = 0;
 						while (w >= 0)
 						{
-						    ctx.fillRect(e.pageX+q, e.pageY+w);
-						    ctx.fillRect(e.pageX-q, e.pageY-w);
-						    ctx.fillRect(e.pageX+q, e.pageY+w);
-						    ctx.fillRect(e.pageX-q, e.pageY-w);
+						    ctx.fillRect(e.pageX+q, e.pageY+w,1 ,1);
+						    ctx.fillRect(e.pageX-q, e.pageY-w,1 ,1);
+						    ctx.fillRect(e.pageX+q, e.pageY+w,1 ,1);
+						    ctx.fillRect(e.pageX-q, e.pageY-w,1 ,1);
 						    error = 2 * (delta + w) - 1;
 						    if ((delta < 0) && (error <= 0))
 						 	delta += 2 * ++q + 1;
