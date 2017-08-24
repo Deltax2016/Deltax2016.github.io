@@ -92,8 +92,8 @@
 				ctx.fillText("Необходимое потребление",645,15);
 				ctx.fillText("КВт",800,40);
 				ctx.fillStyle = "red";
-				for (var r=0; r<360; r++)
-						{
+				for (var r=0; r<=45; r++)
+					{
 						var q = Math.abs((e.pageX+40*Math.cos(r)) - e.pageX);
 						var w = Math.abs((e.pageY+40*Math.sin(r)) - e.pageY);
 						var er = 0;
@@ -109,15 +109,15 @@
 							er-=q;
 							}
 						}
-						}
-						for (var r=0; r<360; r++)
-						{
+					}
+				for (var r=0; r<=360; r++)
+					{
 						var q = Math.abs((e.pageX+40*Math.cos(r)) - e.pageX);
 						var w = Math.abs((e.pageY+40*Math.sin(r)) - e.pageY);
 						var er = 0;
 						var der = w;
 						var y4 = e.pageY;
-						for (var j=e.pageX; j>=e.pageX+40*Math.cos(r);j--)
+						for (var j=e.pageX+40*Math.cos(r); j>=e.pageX;j++)
 						{
 						ctx.fillRect(j,y4 , 1, 1 );
 						er+=der;
@@ -127,7 +127,7 @@
 							er-=q;
 							}
 						}
-						}
+					}
 				ctx.fillStyle = "green";
 				
 				x3= 0;
