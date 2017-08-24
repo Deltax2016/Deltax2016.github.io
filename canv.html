@@ -58,7 +58,9 @@
 			case 54: if (i<6) {char[i] = 6; i+=1; } break;
 			case 55: if (i<6) {char[i] = 7; i+=1; } break;
 			case 56: if (i<6) {char[i] = 8; i+=1; } break;
-			case 57: if (i<6) {char[i] = 9; i+=1; } break;	
+			case 57: if (i<6) {char[i] = 9; i+=1; } break;
+			case 8: if (i>0) {i--;} break;
+			
 			default: alert(code); //Everything else
 			}
 			//ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -68,7 +70,7 @@
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			ctx.fillRect(640, 0, 200, 480);
 		    	ctx.fillStyle = "white";
-		    	for (var j=0; j<i; j++) ctx.fillText(char[j],640+20*(j),100);
+		    	for (var j=0; j<i; j++) ctx.fillText(char[j],640+15*(j),100);
 		    	ctx.fillStyle = "green";
 			}
 			function doMouseDown(e) {
