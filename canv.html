@@ -97,16 +97,16 @@
 						var q = Math.abs((e.pageX+40*Math.cos(r)) - e.pageX);
 						var w = Math.abs((e.pageY+40*Math.sin(r)) - e.pageY);
 						var er = 0;
-						var der = w/q;
+						var der = w;
 						var y4 = e.pageY;
 						for (var j=e.pageX; j<=e.pageX+40*Math.cos(r);j++)
 						{
 						ctx.fillRect(j,y4 , 1, 1 );
 						er+=der;
-							if (er>=0.1)
+							if (2*er>=q)
 							{
 								y4--;
-							er--;
+							er-=q;
 							}
 						}
 						}
