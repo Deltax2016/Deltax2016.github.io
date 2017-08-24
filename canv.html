@@ -20,6 +20,8 @@
 				var char = [];
 				var x1 =0;
 				var y1 = 0;
+				var data = 0;
+				var elect;
 				var x2 =0;
 				var y2 = 0;
 				var x3 =0;
@@ -65,68 +67,62 @@
 			case 56: if (i<6) {char[i] = 8; if (i>0) num *= 10; num += 8; i+=1; } break;
 			case 57: if (i<6) {char[i] = 9; if (i>0) num *= 10; num += 9; i+=1; } break;
 			case 8: if (i>0) {i--; num = (num / 10 | 0);} break;
-			case 13: console.log(num); break;
-			default: alert(code); //Everything else
-			}
-			//ctx.clearRect(0, 0, canvas.width, canvas.height);
-			globX=x2+x3;
-			globY=y2+y3;
-			ctx.drawImage(img,x1,y1,wid, hei);
-			ctx.drawImage(point,x2+x3,y2+y3,32,32);
-			ctx.fillRect(640, 0, 200, 480);
-		    	ctx.fillStyle = "white";
-		    	for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
-		    	ctx.fillText("Необходимое потребление",645,15);
-		    	ctx.fillText("КВт",800,40);
-		    	ctx.fillStyle = "green";
-			}
-			function doMouseDown(e) {
-				x2 = e.pageX -16;
-				y2 = e.pageY - 30;
-				//ctx.clearRect(0, 0, canvas.width, canvas.height);
-				ctx.drawImage(img,x1,y1, wid, hei);
-				ctx.drawImage(point,x2,y2,32,32);
-				ctx.fillRect(640, 0, 200, 480);
-				ctx.fillStyle = "white";
-				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
-				ctx.fillText("Необходимое потребление",645,15);
-				ctx.fillText("КВт",800,40);
-				ctx.fillStyle = "red";
-				//for (var r=0; r<=45; r++)
-					//{
+			case 13: {console.log(num); 
+				data = 1;
+				elect = "СЭС";
+				top:
+				for (var r=5; r<=30; r++)
+					{
 						var q = 0;
-						var w = 30;
-						var delta = 1 - 2 * 30;
+						var w = r;
+						var delta = 1 - 2 * r;
 						var error = 0;
 						while (w >= 0)
 						{
-						    ctx.fillRect(e.pageX+q, e.pageY+w,1 ,1);
-							var imgData = ctx.getImageData(e.pageX+q, e.pageX+w, 1, 1);
+						    
+							var imgData = ctx.getImageData(e.pageX+q, e.pageY+w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
-							if (blue > red+green ) {ctx.fillRect(e.pageX+q-20, e.pageX-20+w, 20, 20);
+							console.log(red+ " " + green + " " +blue);
+							if ((blue==0) && (green==129) && (red==129)) 
+							{elect = "ЛЭП";
+							break top;}
+							else if ((blue>=250) && (green+green<=100)) 
+							{elect = "ГЭС";
 							break;}
-						    ctx.fillRect(e.pageX+q, e.pageY-w,1 ,1);
-							var imgData = ctx.getImageData(e.pageX+q, e.pageX-w, 1, 1);
+							var imgData = ctx.getImageData(e.pageX+q, e.pageY-w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
-							if (blue > red+green ) {ctx.fillRect(e.pageX-q-20, e.pageX-20+w, 20, 20);
+							console.log(red+ " " + green + " " +blue);
+							if ((blue==0) && (green==129) && (red==129)) 
+							{elect = "ЛЭП";
+							break top;}
+							else if ((blue>=250) && (red+green<=100))
+							{elect = "ГЭС";
 							break;}
-						    ctx.fillRect(e.pageX-q, e.pageY+w,1 ,1);
-							var imgData = ctx.getImageData(e.pageX-q, e.pageX+w, 1, 1);
+							var imgData = ctx.getImageData(e.pageX-q, e.pageY+w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
-							if (blue > red+green ) {ctx.fillRect(e.pageX+q-20, e.pageX-20-w, 20, 20);
+							console.log(red+ " " + green + " " +blue);
+							if ((blue==0) && (green==129) && (red==129)) 
+							{elect = "ЛЭП";
+							break top;}
+							else if ((blue>=250) && (red+green<=100))
+							{elect = "ГЭС";
 							break;}
-						    ctx.fillRect(e.pageX-q, e.pageY-w,1 ,1);
-							var imgData = ctx.getImageData(e.pageX-q, e.pageX-w, 1, 1);
+						    var imgData = ctx.getImageData(e.pageX-q, e.pageY-w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
-							if (blue > red+green ) {ctx.fillRect(e.pageX-q-20, e.pageX-20-w, 20, 20);
+							console.log(red+ " " + green + " " +blue);
+							if ((blue==0) && (green==129) && (red==129)) 
+							{elect = "ЛЭП";
+							break top;}
+							else if ((blue>=250) && (red+green<=100))
+							{elect = "ГЭС";
 							break;}
 						    error = 2 * (delta + w) - 1;
 						    if ((delta < 0) && (error <= 0))
@@ -146,18 +142,52 @@
 						       delta += 2 * (q - w);
 						       w--;
 						}
-					//}
-				ctx.fillStyle = "green";
-				x3= 0;
-				y3=0;
-				globX=x2+x3;
-				globY=y2+y3;
-				var imgData = ctx.getImageData(e.pageX, e.pageY+50, 1, 1);
+					}
+			}break;
+			//default: alert(code); //Everything else
+			}
+			//ctx.clearRect(0, 0, canvas.width, canvas.height);
+			globX=x2+x3;
+			globY=y2+y3;
+			ctx.drawImage(img,x1,y1,wid, hei);
+			ctx.drawImage(point,x2+x3,y2+y3,32,32);
+			ctx.fillRect(640, 0, 200, 480);
+		    	ctx.fillStyle = "white";
+		    	for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
+		    	ctx.fillText("Необходимое потребление",645,15);
+		    	ctx.fillText("КВт",800,40);
+		    	if (data == 1){
+					ctx.fillText("Источник энергии:",645,60);
+					ctx.fillText(elect,780,60);
+				}
+		    	ctx.fillStyle = "green";
+			}
+			function doMouseDown(e) {
+				x2 = e.pageX -16;
+				y2 = e.pageY - 30;
+				//ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(img,x1,y1, wid, hei);
+				var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
 				red = imgData.data[0];
 				green = imgData.data[1];
 				blue = imgData.data[2];
 				alpha = imgData.data[3];
 				console.log(red + " " + green + " " + blue + " " + alpha); 
+				ctx.drawImage(point,x2,y2,32,32);
+				ctx.fillRect(640, 0, 200, 480);
+				ctx.fillStyle = "white";
+				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
+				ctx.fillText("Необходимое потребление",645,15);
+				ctx.fillText("КВт",800,40);
+				if (data == 1){
+					ctx.fillText("Источник энергии:",645,60);
+					ctx.fillText(elect,780,60);
+				}
+				ctx.fillStyle = "green";
+				x3= 0;
+				y3=0;
+				globX=x2+x3;
+				globY=y2+y3;
 			}
                 
         </script>
