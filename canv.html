@@ -93,8 +93,8 @@
 				ctx.fillText("КВт",800,40);
 				ctx.fillStyle = "red";
 				for (var r=0; r<90; r++)
-					for (var j=0; j<10; j++)
-						ctx.fillRect( e.pageX+parseInt(Math.tan(r*0.017)*j), e.pageY+j , 1, 1 );
+					for (var j=0; j<20; j++)
+						ctx.fillRect( e.pageX-j, e.pageY-parseInt(Math.tan(r*0.017)*j) , 1, 1 );
 				ctx.fillStyle = "green";
 				
 				x3= 0;
