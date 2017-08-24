@@ -94,8 +94,8 @@
 				ctx.fillStyle = "red";
 				for (var r=0; r<90; r++)
 						{
-						var q = Math.abs(20*Math.cos(r) - e.pageX);
-						var w = Math.abs(20*Math.sin(r) - e.pageY);
+						var q = Math.abs((e.pageX+20*Math.cos(r)) - e.pageX);
+						var w = Math.abs((e.pageY+20*Math.sin(r)) - e.pageY);
 						var er = 0;
 						var der = w/q;
 						var y4 = e.pageY;
