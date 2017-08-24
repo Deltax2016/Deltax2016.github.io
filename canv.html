@@ -60,7 +60,7 @@
 			case 55: if (i<6) {char[i] = 7; if (i>0) num *= 10; num += 7; i+=1; } break;
 			case 56: if (i<6) {char[i] = 8; if (i>0) num *= 10; num += 8; i+=1; } break;
 			case 57: if (i<6) {char[i] = 9; if (i>0) num *= 10; num += 9; i+=1; } break;
-			case 8: if (i>0) {i--; num/=10;} break;
+			case 8: if (i>0) {i--; num>>10;} break;
 			case 13: console.log(num); break;
 			default: alert(code); //Everything else
 			}
