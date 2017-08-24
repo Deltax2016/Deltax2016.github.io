@@ -13,20 +13,25 @@
 				window.addEventListener("mousedown", doMouseDown, false);
 				example.width = 840;
 				example.height = 480;
+				ctx.fillStyle = "green";
+				ctx.font = "30px Arial";
+				var i =0;
+				var char[10]= '';
 				var x1 =0;
 				var y1 = 0;
 				var x2 =0;
 				var y2 = 0;
 				var x3 =0;
 				var y3 = 0;
-var wid = 2600;
-var hei = 4000;
+				var wid = 2600;
+				var hei = 4000;
 				var globX = 0;
 				var globY = 0;
 				var img = new Image();
 				img.src = 'original.png'; 
 				img.onload = function() { 
 				ctx.drawImage(img,x1,y1);
+				ctx.fillRect(640, 0, 200, 480);
 				}
 				img.crossOrigin = "Anonymous";
 				var point = new Image();
@@ -35,8 +40,6 @@ var hei = 4000;
 				//ctx.drawImage(point,x2,y2);
 				}
 				point.crossOrigin = "Anonymous";
-		ctx.fillStyle = "green";
-				ctx.fillRect(640, 0, 200, 480);
             function check(e) {
 			var code = e.keyCode;
 			switch (code) {
@@ -44,10 +47,19 @@ var hei = 4000;
 			case 38: if (y1 != 0) {y1+=8; y3+=8} break; //Up key
 			case 39: if (x1 >-wid+640) {x1-=8; x3-=8;} break; //Right key
 			case 40: if (y1 >-hei+480) {y1-=8; y3-=8;}break; //Down key
-
-case 81: if (wid >= 640 && hei >= 480) {wid -=8; hei-=12,3; x3 -=1,8; y3 -=1,8;} break; 
-case 69: if (wid <= 2600 && hei <= 4000) {wid +=8; hei +=12,3; x3 +=1,8; y3 +=1,8;} break; 
-
+			case 81: if (wid >= 640 && hei >= 480) {wid -=8; hei-=12,3; x3 -=1,8; y3 -=1,8;} break; 
+			case 69: if (wid <= 2600 && hei <= 4000) {wid +=8; hei +=12,3; x3 +=1,8; y3 +=1,8;} break; 
+			case 48: if (i<6) {char[i] = 0; i+=1; ctx.fillText("0",640+32*i,100);} break;
+			case 49: if (i<6) {char[i] = 1; i+=1; ctx.fillText("1",640+32*i,100);} break;
+			case 50: if (i<6) {char[i] = 2; i+=1; ctx.fillText("2",640+32*i,100);} break;
+			case 51: if (i<6) {char[i] = 3; i+=1; ctx.fillText("3",640+32*i,100);} break;
+			case 52: if (i<6) {char[i] = 4; i+=1; ctx.fillText("4",640+32*i,100);} break;
+			case 53: if (i<6) {char[i] = 5; i+=1; ctx.fillText("5",640+32*i,100);} break;
+			case 54: if (i<6) {char[i] = 6; i+=1; ctx.fillText("6",640+32*i,100);} break;
+			case 55: if (i<6) {char[i] = 7; i+=1; ctx.fillText("7",640+32*i,100);} break;
+			case 56: if (i<6) {char[i] = 8; i+=1; ctx.fillText("8",640+32*i,100);} break;
+			case 57: if (i<6) {char[i] = 9; i+=1; ctx.fillText("9",640+32*i,100);} break;
+					
 			default: alert(code); //Everything else
 			}
 			//ctx.clearRect(0, 0, canvas.width, canvas.height);
