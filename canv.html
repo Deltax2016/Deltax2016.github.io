@@ -71,7 +71,8 @@
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			ctx.fillRect(640, 0, 200, 480);
 		    	ctx.fillStyle = "white";
-		    	for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),100);
+		    	for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),50);
+		    	ctx.fillText("Необходимое потребление КВт",640+10*(j),10);
 		    	ctx.fillStyle = "green";
 			}
 			function doMouseDown(e) {
@@ -82,7 +83,8 @@
 				ctx.drawImage(point,x2,y2,32,32);
 				ctx.fillRect(640, 0, 200, 480);
 				ctx.fillStyle = "white";
-				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),100);
+				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),50);
+				ctx.fillText("Необходимое потребление КВт",640+10*(j),10);
 				ctx.fillStyle = "green";
 				x3= 0;
 				y3=0;
