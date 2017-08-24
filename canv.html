@@ -106,28 +106,28 @@
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							if (blue > red+green ) {ctx.fillRect(e.pageX+q-20, e.pageX-20+w, 20, 20);
-							continue 2;}
+							break;}
 						    ctx.fillRect(e.pageX+q, e.pageY-w,1 ,1);
 							var imgData = ctx.getImageData(e.pageX+q, e.pageX-w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							if (blue > red+green ) {ctx.fillRect(e.pageX-q-20, e.pageX-20+w, 20, 20);
-							continue 2;}
+							break;}
 						    ctx.fillRect(e.pageX-q, e.pageY+w,1 ,1);
 							var imgData = ctx.getImageData(e.pageX-q, e.pageX+w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							if (blue > red+green ) {ctx.fillRect(e.pageX+q-20, e.pageX-20-w, 20, 20);
-							continue 2;}
+							break;}
 						    ctx.fillRect(e.pageX-q, e.pageY-w,1 ,1);
 							var imgData = ctx.getImageData(e.pageX-q, e.pageX-w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							if (blue > red+green ) {ctx.fillRect(e.pageX-q-20, e.pageX-20-w, 20, 20);
-							continue 2;}
+							break;}
 						    error = 2 * (delta + w) - 1;
 						    if ((delta < 0) && (error <= 0))
 						    {
