@@ -68,7 +68,7 @@
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			ctx.fillRect(640, 0, 200, 480);
 		    	ctx.fillStyle = "white";
-		    	ctx.fillText(char[i-1],640+20*(i-1),100);
+		    	for (var j=0; j<i; j++) ctx.fillText(char[j],640+20*(i),100);
 		    	ctx.fillStyle = "green";
 			}
 			function doMouseDown(e) {
