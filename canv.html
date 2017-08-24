@@ -101,8 +101,8 @@
 						while (w >= 0)
 						{
 						    ctx.fillRect(e.pageX+q, e.pageY+w,1 ,1);
-						    ctx.fillRect(e.pageX-q, e.pageY-w,1 ,1);
-						    ctx.fillRect(e.pageX+q, e.pageY+w,1 ,1);
+						    ctx.fillRect(e.pageX+q, e.pageY-w,1 ,1);
+						    ctx.fillRect(e.pageX-q, e.pageY+w,1 ,1);
 						    ctx.fillRect(e.pageX-q, e.pageY-w,1 ,1);
 						    error = 2 * (delta + w) - 1;
 						    if ((delta < 0) && (error <= 0))
