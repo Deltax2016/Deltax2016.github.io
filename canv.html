@@ -33,6 +33,9 @@
 				img.onload = function() { 
 				ctx.drawImage(img,x1,y1);
 				ctx.fillRect(640, 0, 200, 480);
+				ctx.fillStyle = "white";
+				ctx.fillText("Необходимое потребление КВт",65,20);
+				ctx.fillStyle = "green";
 				}
 				img.crossOrigin = "Anonymous";
 				var point = new Image();
@@ -71,8 +74,8 @@
 			ctx.drawImage(point,x2+x3,y2+y3,32,32);
 			ctx.fillRect(640, 0, 200, 480);
 		    	ctx.fillStyle = "white";
-		    	for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),50);
-		    	ctx.fillText("Необходимое потребление КВт",640+10*(j),10);
+		    	for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
+		    	ctx.fillText("Необходимое потребление КВт",650,20);
 		    	ctx.fillStyle = "green";
 			}
 			function doMouseDown(e) {
@@ -83,8 +86,8 @@
 				ctx.drawImage(point,x2,y2,32,32);
 				ctx.fillRect(640, 0, 200, 480);
 				ctx.fillStyle = "white";
-				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),50);
-				ctx.fillText("Необходимое потребление КВт",640+10*(j),10);
+				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
+				ctx.fillText("Необходимое потребление КВт",65,20);
 				ctx.fillStyle = "green";
 				x3= 0;
 				y3=0;
