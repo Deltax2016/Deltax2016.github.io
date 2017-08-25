@@ -23,6 +23,7 @@
 						var x1 =0;
 						var n;
 						var Esp;
+						var long;
 						var y1 = 0;
 						var data = 0;
 						var elect;
@@ -104,6 +105,7 @@
 									{elect = "ЛЭП";
 									//ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
 									datnic = 1;
+									long = r;
 									break pot;}
 									//ctx.fillRect(x2+16+q, y2+30+w, 1, 1);
 									var imgData = ctx.getImageData(x2+16+q, y2+30-w, 1, 1);
@@ -115,6 +117,7 @@
 									{elect = "ЛЭП";
 									//ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
 									datnic = 1;
+									long = r;
 									break pot;}
 									//ctx.fillRect(e.pageX+q, e.pageY-w, 1, 1);
 									var imgData = ctx.getImageData(x2+16-q, y2+30+w, 1, 1);
@@ -126,6 +129,7 @@
 									{elect = "ЛЭП";
 									datnic = 1;
 									//ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
+									long = r;
 									break pot;}
 									//ctx.fillRect(x2+16-q, e.pageY+w, 1, 1);
 									var imgData = ctx.getImageData(x2+16-q, y2+30-w, 1, 1);
@@ -135,6 +139,7 @@
 									//console.log(red+ " " + green + " " +blue);
 									if ((blue==0) && (green==129) && (red==129))
 									{elect = "ЛЭП";
+									long = r;
 									datnic = 1;
 									//ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
 									break pot;}
@@ -177,6 +182,7 @@
 									if ((blue>=250) && (red+green<=100))
 									{elect = "ГЭС";
 									//ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
+									long = r;
 									break top;}
 									//ctx.fillRect(x2+16+q, y2+30+w, 1, 1);
 									var imgData = ctx.getImageData(x2+16+q, y2+30-w, 1, 1);
@@ -187,6 +193,7 @@
 									if ((blue>=250) && (red+green<=100))
 									{elect = "ГЭС";
 									//ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
+									long = r;
 									break top;}
 									//ctx.fillRect(e.pageX+q, e.pageY-w, 1, 1);
 									var imgData = ctx.getImageData(x2+16-q, y2+30+w, 1, 1);
@@ -197,6 +204,7 @@
 									if ((blue>=250) && (red+green<=100))
 									{elect = "ГЭС";
 									//ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
+									long = r;
 									break top;}
 									//ctx.fillRect(x2+16-q, e.pageY+w, 1, 1);
 									var imgData = ctx.getImageData(x2+16-q, y2+30-w, 1, 1);
@@ -207,6 +215,7 @@
 									if ((blue>=250) && (red+green<=100))
 									{elect = "ГЭС";
 									//ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
+									long = r;
 									break top;}
 									//ctx.fillRect(x2+16-q, y2+30-w, 1, 1);
 								error = 2 * (delta + w) - 1;
@@ -244,13 +253,39 @@
 					Esp = ((num*1.2)/3.2);
 					n = (num/Esp)*(Esp/0.2);
 					ctx.fillStyle = "white";
-					ctx.fillText("Количество панелей: " + n,645,80);
+					ctx.fillText("Количество панелей: " + parseInt(n),645,80);
 					ctx.fillText("Выработка по месяцам ",645,100);
 					for (var j=0; j<12; j++)
 					{
 					ctx.fillText(mounth[j]+parseInt((array[j]*Esp)/1.2) + "КВт",645,120+j*20);
 					}
 					ctx.fillText("Стоимость батарей " + (154+n*11) + " т.р.",645,360);
+					}
+					if (elect=="ГЭС")
+					{
+					ctx.fillStyle = "white";
+					var mfk = "Напорная";
+					var v = 1.7;
+					var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
+						red = imgData.data[0];
+						green = imgData.data[1];
+						blue = imgData.data[2];
+						alpha = imgData.data[3];
+					if (((red==180)||(red==181)) && (green==254) && (blue==194))  {mfk = "Безнапорная"; v = 2;}
+					else if (((blue==150)||(blue==151)) && (green==244) && (red==130)) {mfk = "Безнапорная"; v = 1.5;}
+					ctx.fillText("Вид ГЭС: " + mfk,645,80);
+					if (mfk == "Безнапорная")
+					{
+					ctx.fillText("Мощность ГЭС "+ (Math.floor(num/(1.5*v*v*v*0.2))+1)*(1.5*v*v*v*0.2)+ " КВт",645,100);
+					ctx.fillText("Стоимость ГЭС " + (Math.floor(num/(1.5*v*v*v*0.2))+1)*46 + " т.р.",645,120);
+					}
+					else
+					{
+					ctx.fillText("Мощность ГЭС "+ (Math.floor(num/(1.5*v*8))+1)*(1.5*v*8)+ " КВт",645,100);
+					ctx.fillText("Стоимость ГЭС " + (Math.floor(num/(1.5*v*8))+1)*46 + " т.р.",645,120);
+					}
+					ctx.fillText("Длина ЛЭП " + long*0.2 + " км",645,140);
+					ctx.fillText("Стоимость ЛЭП " +long*0.2*1.2 + " млн.р.",645,160);
 					}
 					ctx.fillStyle = "white";
 					for (var j=0; j<i; j++) ctx.fillText(char[j],645+10*(j),40);
