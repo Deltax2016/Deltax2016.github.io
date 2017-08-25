@@ -70,6 +70,17 @@
 			case 13: {console.log(num); 
 				data = 1;
 				elect = "СЭС";
+				ctx.drawImage(img,x1,y1,wid, hei);
+				ctx.fillRect(640, 0, 200, 480);
+				ctx.fillStyle = "white";
+				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
+				ctx.fillText("Необходимое потребление",645,15);
+				ctx.fillText("КВт",800,40);
+				if (data == 1){
+						ctx.fillText("Источник энергии:",645,60);
+						ctx.fillText(elect,780,60);
+					}
+				ctx.fillStyle = "green";
 				top:
 				for (var r=5; r<=30; r++)
 					{
