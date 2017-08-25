@@ -1,281 +1,297 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>energy</title>
-        <meta charset='utf-8' />
-    </head>
-    <body>
-        <canvas id="example">Ваш браузер не поддерживает Canvas</canvas>
-        <script>
-            var example = document.getElementById("example"),
-			    ctx     = example.getContext('2d');
-				window.addEventListener('keydown',this.check,false);
-				window.addEventListener("mousedown", doMouseDown, false);
-				example.width = 840;
-				example.height = 480;
-				ctx.fillStyle = "green";
-				ctx.font = "15px Arial";
-				var i =0;
-				var num = 0;
-				var array = [0.23, 0.72, 2.1, 3.2, 4.7, 5.32, 5, 3.5, 1.88, 0,85, 0.23, 0,07];
-				var char = [];
-				var x1 =0;
-				var n;
-				var Esp;
-				var y1 = 0;
-				var data = 0;
-				var elect;
-				var x2 =0;
-				var y2 = 0;
-				var x3 =0;
-				var y3 = 0;
-				var wid = 2600;
-				var hei = 4000;
-				var globX = 0;
-				var globY = 0;
-				var img = new Image();
-				img.src = 'original.png'; 
-				img.onload = function() { 
-				ctx.drawImage(img,x1,y1);
-				ctx.fillRect(640, 0, 200, 480);
-				ctx.fillStyle = "white";
-				ctx.fillText("Необходимое потребление",645,15);
-				ctx.fillText("КВт",800,40);
-				ctx.fillStyle = "green";
-				}
-				img.crossOrigin = "Anonymous";
-				var point = new Image();
-				point.src = 'point.png'; 
-				point.onload = function() { 
-				//ctx.drawImage(point,x2,y2);
-				}
-				point.crossOrigin = "Anonymous";
-            function check(e) {
-			var code = e.keyCode;
-			switch (code) {
-			case 37: if (x1 != 0) {x1+=8; x3+=8;}break; //Left key
-			case 38: if (y1 != 0) {y1+=8; y3+=8} break; //Up key
-			case 39: if (x1 >-wid+640) {x1-=8; x3-=8;} break; //Right key
-			case 40: if (y1 >-hei+480) {y1-=8; y3-=8;}break; //Down key
-			case 81: if (wid >= 640 && hei >= 480) {wid -=8; hei-=12,3; x3 -=1,8; y3 -=1,8;} break; 
-			case 69: if (wid <= 2600 && hei <= 4000) {wid +=8; hei +=12,3; x3 +=1,8; y3 +=1,8;} break; 
-			case 48: if (i<6) {char[i] = 0; if (i>0) num *= 10; num += 0; i+=1;} break;
-			case 49: if (i<6) {char[i] = 1; if (i>0) num *= 10; num += 1; i+=1;} break;
-			case 50: if (i<6) {char[i] = 2; if (i>0) num *= 10; num += 2; i+=1; } break;
-			case 51: if (i<6) {char[i] = 3; if (i>0) num *= 10; num += 3; i+=1; } break;
-			case 52: if (i<6) {char[i] = 4; if (i>0) num *= 10; num += 4; i+=1; } break;
-			case 53: if (i<6) {char[i] = 5; if (i>0) num *= 10; num += 5; i+=1; } break;
-			case 54: if (i<6) {char[i] = 6; if (i>0) num *= 10; num += 6; i+=1; } break;
-			case 55: if (i<6) {char[i] = 7; if (i>0) num *= 10; num += 7; i+=1; } break;
-			case 56: if (i<6) {char[i] = 8; if (i>0) num *= 10; num += 8; i+=1; } break;
-			case 57: if (i<6) {char[i] = 9; if (i>0) num *= 10; num += 9; i+=1; } break;
-			case 8: if (i>0) {i--; num = (num / 10 | 0);} break;
-			case 13: {console.log(num); 
-				Esp = (num*1.2)/3.2);
-				n = (num/Esp)*(Esp/200);
-				
-				data = 1;
-				var datnic = 0;
-				elect = "СЭС";
-				ctx.drawImage(img,x1,y1,wid, hei);
-				ctx.fillStyle = "green";
-				ctx.fillRect(640, 0, 200, 480);
-				ctx.fillStyle = "white";
-				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
-				ctx.fillText("Необходимое потребление",645,15);
-				ctx.fillText("КВт",800,40);
-				pot:
-				for (var r=5; r<=30; r++)
-					{
-						var q = 0;
-						var w = r;
-						var delta = 1 - 2 * r;
-						var error = 0;
-						while (w >= 0)
-						{
-							var imgData = ctx.getImageData(x2+16+q, y2+30+w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue==0) && (green==129) && (red==129)) 
-							{elect = "ЛЭП";
-							//ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
-							datnic = 1;
-							break pot;}
-							//ctx.fillRect(x2+16+q, y2+30+w, 1, 1);
-							var imgData = ctx.getImageData(x2+16+q, y2+30-w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue==0) && (green==129) && (red==129)) 
-							{elect = "ЛЭП";
-							//ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
-							 datnic = 1;
-							break pot;}
-							//ctx.fillRect(e.pageX+q, e.pageY-w, 1, 1);
-							var imgData = ctx.getImageData(x2+16-q, y2+30+w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue==0) && (green==129) && (red==129)) 
-							{elect = "ЛЭП";
-							 datnic = 1;
-							//ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
-							break pot;}
-							//ctx.fillRect(x2+16-q, e.pageY+w, 1, 1);
-						   	var imgData = ctx.getImageData(x2+16-q, y2+30-w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue==0) && (green==129) && (red==129)) 
-							{elect = "ЛЭП";
-							 datnic = 1;
-							//ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
-							break pot;}
-							//ctx.fillRect(x2+16-q, y2+30-w, 1, 1);
-						    error = 2 * (delta + w) - 1;
-						    if ((delta < 0) && (error <= 0))
-						    {
-							    q++;
-						 	delta += 2 * q + 1;
-						 	continue;
-						    }
-						     error = 2 * (delta - q) - 1;
-						       if ((delta > 0) && (error > 0))
-						       {
-							       w--;
-							   delta += 1 - 2 * w;
-							   continue;
-						       }
-						       q++;
-						       delta += 2 * (q - w);
-						       w--;
+	<head>
+		<title>energy</title>
+		<meta charset='utf-8' />
+	</head>
+	<body>
+		<canvas id="example">Ваш браузер не поддерживает Canvas</canvas>
+		<script>
+		var example = document.getElementById("example"),
+					ctx     = example.getContext('2d');
+						window.addEventListener('keydown',this.check,false);
+						window.addEventListener("mousedown", doMouseDown, false);
+						example.width = 840;
+						example.height = 480;
+						ctx.fillStyle = "green";
+						ctx.font = "15px Arial";
+						var i =0;
+						var num = 0;
+						var array = [0.23, 0.72, 2.1, 3.2, 4.7, 5.32, 5, 3.5, 1.88, 0.85, 0.23, 0.07];
+						var mounth = ["Январь ", "Февраль ", "Март ", "Апрель ", "Май ", "Июнь ", "Июль ", "Август ", "Сентябрь ", "Октябрь ", "Ноябрь ", "Декабрь "];
+						var char = [];
+						var x1 =0;
+						var n;
+						var Esp;
+						var y1 = 0;
+						var data = 0;
+						var elect;
+						var x2 =0;
+						var y2 = 0;
+						var x3 =0;
+						var y3 = 0;
+						var bool = 0;
+						var wid = 2600;
+						var hei = 4000;
+						var globX = 0;
+						var globY = 0;
+						var img = new Image();
+						img.src = 'original.png';
+						img.onload = function() {
+						ctx.drawImage(img,x1,y1);
+						ctx.fillRect(640, 0, 200, 480);
+						ctx.fillStyle = "white";
+						ctx.fillText("Необходимое потребление",645,15);
+						//ctx.fillText("КВт",800,40);
+						ctx.fillStyle = "green";
 						}
-					}
-			if (datnic == 0)
-			{
-				top:
-				for (var r=5; r<=30; r++)
-					{
-						var q = 0;
-						var w = r;
-						var delta = 1 - 2 * r;
-						var error = 0;
-						while (w >= 0)
-						{
-							var imgData = ctx.getImageData(x2+16+q, y2+30+w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue>=250) && (red+green<=100)) 
-							{elect = "ГЭС";
-							//ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
-							break top;}
-							//ctx.fillRect(x2+16+q, y2+30+w, 1, 1);
-							var imgData = ctx.getImageData(x2+16+q, y2+30-w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue>=250) && (red+green<=100))
-							{elect = "ГЭС";
-							//ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
-							break top;}
-							//ctx.fillRect(e.pageX+q, e.pageY-w, 1, 1);
-							var imgData = ctx.getImageData(x2+16-q, y2+30+w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue>=250) && (red+green<=100))
-							{elect = "ГЭС";
-							//ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
-							break top;}
-							//ctx.fillRect(x2+16-q, e.pageY+w, 1, 1);
-						   	var imgData = ctx.getImageData(x2+16-q, y2+30-w, 1, 1);
-							red = imgData.data[0];
-							green = imgData.data[1];
-							blue = imgData.data[2];
-							//console.log(red+ " " + green + " " +blue);
-							if ((blue>=250) && (red+green<=100))
-							{elect = "ГЭС";
-							//ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
-							break top;}
-							//ctx.fillRect(x2+16-q, y2+30-w, 1, 1);
-						    error = 2 * (delta + w) - 1;
-						    if ((delta < 0) && (error <= 0))
-						    {
-							    q++;
-						 	delta += 2 * q + 1;
-						 	continue;
-						    }
-						     error = 2 * (delta - q) - 1;
-						       if ((delta > 0) && (error > 0))
-						       {
-							       w--;
-							   delta += 1 - 2 * w;
-							   continue;
-						       }
-						       q++;
-						       delta += 2 * (q - w);
-						       w--;
+						img.crossOrigin = "Anonymous";
+						var point = new Image();
+						point.src = 'point.png';
+						point.onload = function() {
+						//ctx.drawImage(point,x2,y2);
 						}
+						point.crossOrigin = "Anonymous";
+		function check(e) {
+					var code = e.keyCode;
+					switch (code) {
+					case 37: if (x1 != 0) {x1+=8; x3+=8;}break; //Left key
+					case 38: if (y1 != 0) {y1+=8; y3+=8} break; //Up key
+					case 39: if (x1 >-wid+640) {x1-=8; x3-=8;} break; //Right key
+					case 40: if (y1 >-hei+480) {y1-=8; y3-=8;}break; //Down key
+					case 81: if (wid >= 640 && hei >= 480) {wid -=8; hei-=12,3; x3 -=1,8; y3 -=1,8;} break;
+					case 69: if (wid <= 2600 && hei <= 4000) {wid +=8; hei +=12,3; x3 +=1,8; y3 +=1,8;} break;
+					case 48: if (i<6) {char[i] = 0; if (i>0) num *= 10; num += 0; i+=1;} break;
+					case 49: if (i<6) {char[i] = 1; if (i>0) num *= 10; num += 1; i+=1;} break;
+					case 50: if (i<6) {char[i] = 2; if (i>0) num *= 10; num += 2; i+=1; } break;
+					case 51: if (i<6) {char[i] = 3; if (i>0) num *= 10; num += 3; i+=1; } break;
+					case 52: if (i<6) {char[i] = 4; if (i>0) num *= 10; num += 4; i+=1; } break;
+					case 53: if (i<6) {char[i] = 5; if (i>0) num *= 10; num += 5; i+=1; } break;
+					case 54: if (i<6) {char[i] = 6; if (i>0) num *= 10; num += 6; i+=1; } break;
+					case 55: if (i<6) {char[i] = 7; if (i>0) num *= 10; num += 7; i+=1; } break;
+					case 56: if (i<6) {char[i] = 8; if (i>0) num *= 10; num += 8; i+=1; } break;
+					case 57: if (i<6) {char[i] = 9; if (i>0) num *= 10; num += 9; i+=1; } break;
+					case 8: if (i>0) {i--; num = (num / 10 | 0);} break;
+					case 13:
+					{
+						console.log(num);
+						data = 1;
+						var datnic = 0;
+						bool =1;
+						elect = "СЭС";
+						ctx.drawImage(img,x1,y1,wid, hei);
+						ctx.fillStyle = "green";
+						ctx.fillRect(640, 0, 200, 480);
+						ctx.fillStyle = "white";
+						for (var j=0; j<i; j++) ctx.fillText(char[j],645+10*(j),40);
+						ctx.fillText("Необходимое потребление",645,15);
+						ctx.fillText("КВт",645+(i*10),40);
+						pot:
+						for (var r=5; r<=30; r++)
+							{
+								var q = 0;
+								var w = r;
+								var delta = 1 - 2 * r;
+								var error = 0;
+								while (w >= 0)
+								{
+									var imgData = ctx.getImageData(x2+16+q, y2+30+w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue==0) && (green==129) && (red==129))
+									{elect = "ЛЭП";
+									//ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
+									datnic = 1;
+									break pot;}
+									//ctx.fillRect(x2+16+q, y2+30+w, 1, 1);
+									var imgData = ctx.getImageData(x2+16+q, y2+30-w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue==0) && (green==129) && (red==129))
+									{elect = "ЛЭП";
+									//ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
+									datnic = 1;
+									break pot;}
+									//ctx.fillRect(e.pageX+q, e.pageY-w, 1, 1);
+									var imgData = ctx.getImageData(x2+16-q, y2+30+w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue==0) && (green==129) && (red==129))
+									{elect = "ЛЭП";
+									datnic = 1;
+									//ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
+									break pot;}
+									//ctx.fillRect(x2+16-q, e.pageY+w, 1, 1);
+									var imgData = ctx.getImageData(x2+16-q, y2+30-w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue==0) && (green==129) && (red==129))
+									{elect = "ЛЭП";
+									datnic = 1;
+									//ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
+									break pot;}
+									//ctx.fillRect(x2+16-q, y2+30-w, 1, 1);
+								error = 2 * (delta + w) - 1;
+								if ((delta < 0) && (error <= 0))
+								{
+									q++;
+									delta += 2 * q + 1;
+									continue;
+								}
+								error = 2 * (delta - q) - 1;
+								if ((delta > 0) && (error > 0))
+								{
+									w--;
+									delta += 1 - 2 * w;
+									continue;
+								}
+								q++;
+								delta += 2 * (q - w);
+								w--;
+								}
+							}
+					if (datnic == 0)
+					{
+						top:
+						for (var r=5; r<=30; r++)
+							{
+								var q = 0;
+								var w = r;
+								var delta = 1 - 2 * r;
+								var error = 0;
+								while (w >= 0)
+								{
+									var imgData = ctx.getImageData(x2+16+q, y2+30+w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue>=250) && (red+green<=100))
+									{elect = "ГЭС";
+									//ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
+									break top;}
+									//ctx.fillRect(x2+16+q, y2+30+w, 1, 1);
+									var imgData = ctx.getImageData(x2+16+q, y2+30-w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue>=250) && (red+green<=100))
+									{elect = "ГЭС";
+									//ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
+									break top;}
+									//ctx.fillRect(e.pageX+q, e.pageY-w, 1, 1);
+									var imgData = ctx.getImageData(x2+16-q, y2+30+w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue>=250) && (red+green<=100))
+									{elect = "ГЭС";
+									//ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
+									break top;}
+									//ctx.fillRect(x2+16-q, e.pageY+w, 1, 1);
+									var imgData = ctx.getImageData(x2+16-q, y2+30-w, 1, 1);
+									red = imgData.data[0];
+									green = imgData.data[1];
+									blue = imgData.data[2];
+									//console.log(red+ " " + green + " " +blue);
+									if ((blue>=250) && (red+green<=100))
+									{elect = "ГЭС";
+									//ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
+									break top;}
+									//ctx.fillRect(x2+16-q, y2+30-w, 1, 1);
+								error = 2 * (delta + w) - 1;
+								if ((delta < 0) && (error <= 0))
+								{
+									q++;
+									delta += 2 * q + 1;
+									continue;
+								}
+								error = 2 * (delta - q) - 1;
+								if ((delta > 0) && (error > 0))
+								{
+									w--;
+									delta += 1 - 2 * w;
+									continue;
+								}
+								q++;
+								delta += 2 * (q - w);
+								w--;
+								}
+							}
 					}
-			}
-			}break;
-			//default: alert(code); //Everything else
-			}
-			//ctx.clearRect(0, 0, canvas.width, canvas.height);
-			globX=x2+x3;
-			globY=y2+y3;
-			ctx.drawImage(img,x1,y1,wid, hei);
-			ctx.drawImage(point,x2+x3,y2+y3,32,32);
-		    	ctx.fillStyle = "green";
-			ctx.fillRect(640, 0, 200, 480);
-		    	ctx.fillStyle = "white";
-		    	for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
-		    	ctx.fillText("Необходимое потребление",645,15);
-		    	ctx.fillText("КВт",800,40);
-		    	if (data == 1){
-					ctx.fillText("Источник энергии:",645,60);
-					ctx.fillText(elect,780,60);
-				}
-		    	
-		    	ctx.fillStyle = "green";
-			}
-			function doMouseDown(e) {
-				x2 = e.pageX -16;
-				y2 = e.pageY - 30;
-				//ctx.clearRect(0, 0, canvas.width, canvas.height);
-				ctx.drawImage(img,x1,y1, wid, hei);
-				var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
-				red = imgData.data[0];
-				green = imgData.data[1];
-				blue = imgData.data[2];
-				alpha = imgData.data[3];
-				console.log(red + " " + green + " " + blue + " " + alpha); 
-				ctx.drawImage(point,x2,y2,32,32);
-				ctx.fillRect(640, 0, 200, 480);
-				ctx.fillStyle = "white";
-				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
-				ctx.fillText("Необходимое потребление",645,15);
-				ctx.fillText("КВт",800,40);
-				if (data == 1){
-					ctx.fillText("Источник энергии:",645,60);
-					ctx.fillText(elect,780,60);
-				}
-				ctx.fillStyle = "green";
-				x3= 0;
-				y3=0;
-				globX=x2+x3;
-				globY=y2+y3;
-			}
-                
-        </script>
-    </body>
+					}break;
+					//default: alert(code); //Everything else
+					}
+					//ctx.clearRect(0, 0, canvas.width, canvas.height);
+					globX=x2+x3;
+					globY=y2+y3;
+					ctx.drawImage(img,x1,y1,wid, hei);
+					ctx.drawImage(point,x2+x3,y2+y3,32,32);
+					ctx.fillStyle = "green";
+					ctx.fillRect(640, 0, 200, 480);
+					if (elect=="СЭС")
+					{
+					Esp = ((num*1.2)/3.2);
+					n = (num/Esp)*(Esp/0.2);
+					ctx.fillStyle = "white";
+					ctx.fillText("Количество панелей: " + n,645,80);
+					ctx.fillText("Выработка по месяцам ",645,100);
+					for (var j=0; j<12; j++)
+					{
+					ctx.fillText(mounth[j]+parseInt((array[j]*Esp)/1.2) + "КВт",645,120+j*20);
+					}
+					ctx.fillText("Стоимость батарей " + (154+n*11) + " т.р.",645,360);
+					}
+					ctx.fillStyle = "white";
+					for (var j=0; j<i; j++) ctx.fillText(char[j],645+10*(j),40);
+					ctx.fillText("КВт",645+(i*10),40);
+					ctx.fillText("Необходимое потребление",645,15);
+					//ctx.fillText("КВт",800,40);
+					if (data == 1){
+							ctx.fillText("Источник энергии:",645,60);
+							ctx.fillText(elect,780,60);
+						}
+					bool = 0;
+					ctx.fillStyle = "green";
+					}
+					function doMouseDown(e) {
+						x2 = e.pageX -16;
+						y2 = e.pageY - 30;
+						//ctx.clearRect(0, 0, canvas.width, canvas.height);
+						ctx.drawImage(img,x1,y1, wid, hei);
+						var imgData = ctx.getImageData(e.pageX, e.pageY, 1, 1);
+						red = imgData.data[0];
+						green = imgData.data[1];
+						blue = imgData.data[2];
+						alpha = imgData.data[3];
+						console.log(red + " " + green + " " + blue + " " + alpha);
+						ctx.drawImage(point,x2,y2,32,32);
+						ctx.fillRect(640, 0, 200, 480);
+						ctx.fillStyle = "white";
+						for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
+						ctx.fillText("Необходимое потребление",645,15);
+						ctx.fillText("КВт",800,40);
+						if (data == 1){
+							ctx.fillText("Источник энергии:",645,60);
+							ctx.fillText(elect,780,60);
+						}
+						ctx.fillStyle = "green";
+						x3= 0;
+						y3=0;
+						globX=x2+x3;
+						globY=y2+y3;
+					}
+		
+		</script>
+	</body>
 </html>
