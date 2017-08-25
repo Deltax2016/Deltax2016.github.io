@@ -76,10 +76,6 @@
 				for (var j=0; j<i; j++) ctx.fillText(char[j],680+10*(j),40);
 				ctx.fillText("Необходимое потребление",645,15);
 				ctx.fillText("КВт",800,40);
-				if (data == 1){
-						ctx.fillText("Источник энергии:",645,60);
-						ctx.fillText(elect,780,60);
-					}
 				ctx.fillStyle = "green";
 				top:
 				for (var r=5; r<=30; r++)
@@ -90,7 +86,6 @@
 						var error = 0;
 						while (w >= 0)
 						{
-						    
 							var imgData = ctx.getImageData(e.pageX+q, e.pageY+w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
@@ -100,7 +95,7 @@
 							{elect = "ЛЭП";
 							ctx.fillRect(e.pageX+q+10, e.pageX-10+w, 20, 20);
 							break top;}
-							else if ((blue>=250) && (green+green<=100)) 
+							else if ((blue>=250) && (red+green<=100)) 
 							{elect = "ГЭС";
 							ctx.fillRect(e.pageX+q+10, e.pageX-10+w, 20, 20);
 							break;}
