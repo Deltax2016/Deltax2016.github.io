@@ -87,62 +87,62 @@
 						var error = 0;
 						while (w >= 0)
 						{
-							var imgData = ctx.getImageData(e.pageX+q, e.pageY+w, 1, 1);
+							var imgData = ctx.getImageData(x2+16+q, y2+30+w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							console.log(red+ " " + green + " " +blue);
 							if ((blue==0) && (green==129) && (red==129)) 
 							{elect = "ЛЭП";
-							ctx.fillRect(e.pageX+q+10, e.pageX-10+w, 20, 20);
+							ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
 							break;}
 							else if ((blue>=250) && (red+green<=100)) 
 							{elect = "ГЭС";
-							ctx.fillRect(e.pageX+q+10, e.pageX-10+w, 20, 20);
+							ctx.fillRect(x2+16+q+10, y2+30-10+w, 20, 20);
 							break;}
-							ctx.fillRect(e.pageX+q, e.pageY+w, 1, 1);
-							var imgData = ctx.getImageData(e.pageX+q, e.pageY-w, 1, 1);
+							ctx.fillRect(x2+16+q, y2+30+w, 1, 1);
+							var imgData = ctx.getImageData(x2+16+q, y2+30-w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							console.log(red+ " " + green + " " +blue);
 							if ((blue==0) && (green==129) && (red==129)) 
 							{elect = "ЛЭП";
-							ctx.fillRect(e.pageX+q-10, e.pageX-10-w, 20, 20);
+							ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
 							break;}
 							else if ((blue>=250) && (red+green<=100))
 							{elect = "ГЭС";
-							ctx.fillRect(e.pageX+q-10, e.pageX-10-w, 20, 20);
+							ctx.fillRect(x2+16+q-10, y2+30-10-w, 20, 20);
 							break;}
 							ctx.fillRect(e.pageX+q, e.pageY-w, 1, 1);
-							var imgData = ctx.getImageData(e.pageX-q, e.pageY+w, 1, 1);
+							var imgData = ctx.getImageData(x2+16-q, y2+30+w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							console.log(red+ " " + green + " " +blue);
 							if ((blue==0) && (green==129) && (red==129)) 
 							{elect = "ЛЭП";
-							ctx.fillRect(e.pageX-q-10, e.pageX-10+w, 20, 20);
+							ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
 							break;}
 							else if ((blue>=250) && (red+green<=100))
 							{elect = "ГЭС";
-							ctx.fillRect(e.pageX-q-10, e.pageX-10+w, 20, 20);
+							ctx.fillRect(x2+16-q-10, y2+30-10+w, 20, 20);
 							break;}
-							ctx.fillRect(e.pageX-q, e.pageY+w, 1, 1);
-						   	var imgData = ctx.getImageData(e.pageX-q, e.pageY-w, 1, 1);
+							ctx.fillRect(x2+16-q, e.pageY+w, 1, 1);
+						   	var imgData = ctx.getImageData(x2+16-q, y2+30-w, 1, 1);
 							red = imgData.data[0];
 							green = imgData.data[1];
 							blue = imgData.data[2];
 							console.log(red+ " " + green + " " +blue);
 							if ((blue==0) && (green==129) && (red==129)) 
 							{elect = "ЛЭП";
-							ctx.fillRect(e.pageX-q-10, e.pageX-10-w, 20, 20);
+							ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
 							break;}
 							else if ((blue>=250) && (red+green<=100))
 							{elect = "ГЭС";
-							ctx.fillRect(e.pageX-q-10, e.pageX-10-w, 20, 20);
+							ctx.fillRect(x2+16-q-10, y2+30-10-w, 20, 20);
 							break;}
-							ctx.fillRect(e.pageX-q, e.pageY-w, 1, 1);
+							ctx.fillRect(x2+16-q, y2+30-w, 1, 1);
 						    error = 2 * (delta + w) - 1;
 						    if ((delta < 0) && (error <= 0))
 						    {
