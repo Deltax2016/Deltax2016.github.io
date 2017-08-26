@@ -85,7 +85,7 @@
 						ctx.fillStyle = "green";
 						ctx.fillRect(example.width-400, 0, 400, example.height);
 						ctx.fillStyle = "white";
-						for (var j=0; j<i; j++) ctx.fillText(char[j],example.width-400+20*(j),60);
+						for (var j=0; j<i; j++) ctx.fillText(char[j],example.width-400+15*(j),60);
 						ctx.fillText("Необходимое потребление",example.width-400+10,40);
 						ctx.fillText("КВт",example.width-400+(i*15),60);
 						pot:
@@ -314,7 +314,7 @@
 					ctx.fillText("Стоимость ЛЭП " + (Math.round(long*0.15*120)/100) + " млн.р.",example.width-400+10,300);
 					}
 					ctx.fillStyle = "white";
-					for (var j=0; j<i; j++) ctx.fillText(char[j],example.width-400+10+20*(j),60);
+					for (var j=0; j<i; j++) ctx.fillText(char[j],example.width-400+10+15*(j),60);
 					ctx.fillText("КВт",example.width-400+10+(i*15),60);
 					ctx.fillText("Необходимое потребление",example.width-400+10,20);
 					//ctx.fillText("КВт",800,40);
